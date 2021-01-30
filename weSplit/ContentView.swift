@@ -13,7 +13,7 @@ struct ContentView: View {
     @State private var numberOfPeople = ""
     @State private var tipPercentage = 2
     
-    let tipPercentages = [10, 15, 20, 25, 0]
+    let tipPercentages = [0, 10, 15, 20, 25]
     
     var totalPerPerson: Double {
         //calculate total per person
@@ -60,13 +60,14 @@ struct ContentView: View {
                             Text("\(self.tipPercentages[$0])%")
                         }
                     }
-                    .pickerStyle(SegmentedPickerStyle())
+                    //.pickerStyle(SegmentedPickerStyle())
                 }
                 Section(header: Text("Amount per person: ")){
                     Text("$\(totalPerPerson, specifier: "%.2f")")
                 }
                 Section(header: Text("total")){
                     Text("\(total, specifier: "%.2f")")
+                        .foregroundColor(tipPercentage == 0 ? Color.red : Color.black)
                 }
             }
             .navigationTitle("WeSplit")
